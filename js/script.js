@@ -43,7 +43,7 @@ window.onscroll = () => {
 /*==================== scroll reveal ====================*/
 ScrollReveal({
     reset:true,
-    distance:'80px',
+    distance:'10px',
     duration:2000,
     delay: 200
 })
@@ -58,6 +58,6 @@ const typed = new Typed('.multiple-text', {
     strings: ['PHP Developer','React Developer','NodeJs Developer'],
     typeSpeed: 100,
     backSpeed: 100,
-    backDelay: 1000,
+    backDelay: 100,
     loop: true
 });
