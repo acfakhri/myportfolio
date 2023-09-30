@@ -16,6 +16,7 @@
     --sec-bg-color: rgb(42, 45, 74);
     --text-color:rgb(2, 2, 2);
     --main-color:rgb(184, 200, 255);
+    --text-color2 : darkblue;
 }
 
 html {
@@ -93,8 +94,8 @@ section {
 
 .home-img img {
     border-radius: 50%;
-    border-width: 2rem;
-    border-color: var(--main-color);
+    border-width: 5rem;
+    border-color: var(--text-color);
     width: 35vw;
     animation: floatImage 4s ease-in-out infinite;
 
