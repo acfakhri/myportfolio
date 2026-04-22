@@ -1,182 +1,730 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel=”icon” href="images/home-1.jpg">
-    <title>Portfolio || Fakhrizul Amri </title>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="images/home-1.jpg" />
+  <title>Fakhrizul Amri — Portfolio</title>
 
-    <!-- box icons -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <!-- custom css -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <body>
-    <!-- header design -->
-    <header class="header">
-        <a href="#" class="logo">Fakhrizul Amri</a>
-        
-        <i class="bx bx-menu" id="menu-icon"></i>
+  <!-- Google Fonts: Syne + DM Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-        <nav class="navbar">
-        <a href="#home" class="text active">Home</a>
-        <a href="#about" class="text">About</a>
-        <a href="#services" class="text">Service</a>
-        <a href="#portfolio" class="text">Portfolio</a>
-        <a href="#contact" class="text">Contact</a>
-                   
-        </nav>
+  <!-- Boxicons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-    </header>
-    <!-- home section design -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Halo, Selamat Datang..</h3>
-            <h1>Fakhrizul Amri</h1>
-            <h3>Seorang <span class="multiple-text">PHP Developer</span></h3>
-            <p>Memiliki minat untuk bekerja di bidang Web Programming. Saya suka berkecimpung dalam proses pengembangan web.</p>
-            <div class="sosmed">
-                <a href="#"><i class="bx bxl-instagram"></i></a>
-                <a href="#"><i class="bx bxl-linkedin"></i></a>
-                <a href="#"><i class="bx bxl-twitter"></i></a>
-                <a href="#"><i class="bx bxl-github"></i></a>
-            </div>
-            <a href="/images/about-1.jpg" target="_blank" class="btn">Unduh CV</a>
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0d0d0d',
+            cream: '#f5f0e8',
+            accent: '#c8a96e',
+            'accent-light': '#e8d5a8',
+            muted: '#6b6b6b',
+            surface: '#1a1a1a',
+            'surface-2': '#242424',
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'slide-up': 'slideUp 0.8s ease forwards',
+            'fade-in': 'fadeIn 1s ease forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-18px)' },
+            },
+            slideUp: {
+              from: { opacity: '0', transform: 'translateY(40px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              from: { opacity: '0' },
+              to: { opacity: '1' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Syne', sans-serif; }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0d0d0d; }
+    ::-webkit-scrollbar-thumb { background: #c8a96e; border-radius: 2px; }
+
+    /* Nav link underline animation */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: #c8a96e;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+    .nav-link.active { color: #c8a96e; }
+
+    /* Hero image ring */
+    .hero-ring {
+      position: relative;
+    }
+    .hero-ring::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.3);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    .hero-ring::after {
+      content: '';
+      position: absolute;
+      inset: -24px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.15);
+      animation: pulse-ring 3s ease-in-out infinite 1s;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.5; }
+    }
+
+    /* Service card hover */
+    .service-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(200,169,110,0.4);
+      box-shadow: 0 20px 60px rgba(200,169,110,0.1);
+    }
+
+    /* Portfolio hover */
+    .portfolio-item .overlay {
+      background: linear-gradient(to top, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.2) 100%);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .portfolio-item:hover .overlay { transform: translateY(0); }
+    .portfolio-item:hover img { transform: scale(1.08); }
+    .portfolio-item img { transition: transform 0.4s ease; }
+
+    /* Input focus */
+    .form-input:focus {
+      outline: none;
+      border-color: #c8a96e;
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.1);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: all 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* Section number tag */
+    .section-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Animated cursor dot */
+    .cursor-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: #c8a96e;
+      border-radius: 50%;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Horizontal rule accent */
+    .hr-accent {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c8a96e, transparent);
+    }
+  </style>
+</head>
+
+<body class="bg-ink text-cream overflow-x-hidden">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="font-display text-xl font-800 tracking-tight">
+        <span class="text-cream">FA</span><span class="text-accent">.</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link active text-sm text-cream/80 hover:text-cream transition-colors">Home</a>
+        <a href="#about" class="nav-link text-sm text-cream/80 hover:text-cream transition-colors">About</a>
+        <a href="#services" class="nav-link text-sm text-cream/80 hover:text-cream transition-colors">Services</a>
+        <a href="#portfolio" class="nav-link text-sm text-cream/80 hover:text-cream transition-colors">Portfolio</a>
+        <a href="#contact" class="nav-link text-sm text-cream/80 hover:text-cream transition-colors">Contact</a>
+        <a href="images/about-1.jpg" target="_blank"
+           class="ml-4 px-5 py-2 border border-accent text-accent text-sm font-display font-600 hover:bg-accent hover:text-ink transition-all duration-300 rounded-sm">
+          Download CV
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()">
+        <span class="w-6 h-px bg-cream block transition-all duration-300" id="bar1"></span>
+        <span class="w-4 h-px bg-cream block transition-all duration-300" id="bar2"></span>
+        <span class="w-6 h-px bg-cream block transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-surface border-t border-white/5">
+      <div class="flex flex-col px-6 py-4 gap-4">
+        <a href="#home" class="text-cream/80 hover:text-accent transition-colors py-2" onclick="closeMenu()">Home</a>
+        <a href="#about" class="text-cream/80 hover:text-accent transition-colors py-2" onclick="closeMenu()">About</a>
+        <a href="#services" class="text-cream/80 hover:text-accent transition-colors py-2" onclick="closeMenu()">Services</a>
+        <a href="#portfolio" class="text-cream/80 hover:text-accent transition-colors py-2" onclick="closeMenu()">Portfolio</a>
+        <a href="#contact" class="text-cream/80 hover:text-accent transition-colors py-2" onclick="closeMenu()">Contact</a>
+        <a href="images/about-1.jpg" target="_blank" class="text-accent py-2" onclick="closeMenu()">Download CV →</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ===================== HERO ===================== -->
+  <section id="home" class="min-h-screen flex items-center pt-24 pb-16 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Text -->
+        <div class="order-2 lg:order-1">
+          <div class="section-tag text-accent/60 mb-6">👋 Selamat Datang</div>
+          <h1 class="font-display text-5xl lg:text-7xl font-800 leading-none mb-4 tracking-tight">
+            Fakhrizul<br />
+            <span class="text-accent">Amri</span>
+          </h1>
+          <div class="text-2xl lg:text-3xl font-display font-600 text-cream/60 mb-6">
+            Seorang <span id="typed-text" class="text-accent"></span><span class="cursor-dot"></span>
+          </div>
+          <p class="text-cream/50 text-base leading-relaxed max-w-md mb-10">
+            Memiliki minat untuk bekerja di bidang Web Programming.
+            Saya suka berkecimpung dalam proses pengembangan web dan digital art.
+          </p>
+
+          <!-- Social Links -->
+          <div class="flex items-center gap-4 mb-10">
+            <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-sm hover:border-accent hover:text-accent text-cream/40 transition-all duration-300">
+              <i class="bx bxl-instagram text-lg"></i>
+            </a>
+            <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-sm hover:border-accent hover:text-accent text-cream/40 transition-all duration-300">
+              <i class="bx bxl-linkedin text-lg"></i>
+            </a>
+            <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-sm hover:border-accent hover:text-accent text-cream/40 transition-all duration-300">
+              <i class="bx bxl-twitter text-lg"></i>
+            </a>
+            <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded-sm hover:border-accent hover:text-accent text-cream/40 transition-all duration-300">
+              <i class="bx bxl-github text-lg"></i>
+            </a>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex items-center gap-4">
+            <a href="#portfolio"
+               class="px-8 py-3.5 bg-accent text-ink font-display font-600 text-sm hover:bg-accent-light transition-all duration-300 rounded-sm">
+              Lihat Portfolio
+            </a>
+            <a href="#contact"
+               class="px-8 py-3.5 border border-white/20 text-cream/70 font-display font-600 text-sm hover:border-accent hover:text-cream transition-all duration-300 rounded-sm">
+              Hubungi Saya
+            </a>
+          </div>
         </div>
-        <div class="home-img">
-            <img src="images/home-1.jpg" alt="">
-        </div>
-    </section>
 
-
-    <!-- about section design -->
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="images/about-1.jpg" alt="">
-        </div>
-        <div class="about-content">
-            <h2 class="heading">Tentang <span>Saya</span></h2>
-            <p>Halo, perkenalkan nama saya Fakhrizul Amri, juga biasa dipanggil Amri, adalah seorang developer web yang memiliki dedikasi tinggi dibidang Full Stack Web. Awal perjalanan dimulai dari dasar HTML, CSS, dan JavaScript. Kemudian menempuh jalur PHP dengan kerangka kerja Laravel dan CodeIgniter dengan menggunakan basis data MySQL. Selain itu, saya juga melalui React Js dan Next Js sebagai kerangka kerja JavaScript di bagian Front End. </p>
-            <p>Amri memiliki kemampuan adaptasi yang cepat dalam tantangan baru. Dia aktif dalam mempelajari berbagai hal dalam perkembangan web. Selain itu, dedikasi nya dapat menjadikannya sebagai seseorang yang dibutuhkan dalam tim. Saat ini dia sedang menempuh keseluruhan framework web yang bisa dipelajari.</p>
-            
-        </div>
-    </section>
-
-    <!-- services section design -->
-    <section class="services" id="services">
-        <h2 class="heading">Ser<span>vice</span></h2>
-            
-        <div class="services-container">
-                <div class="services-box">
-                    <i class="bx bx-code-alt"></i>
-                    <h3>Web Development</h3>
-                    <p>Saya menikmati dalam mengembangkan suatu aplikasi web. Selain itu membuat API dan konsumsi API juga merupakan kegemaran saya</p>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-               <div class="services-box">
-                    <i class='bx bx-palette'></i>
-                    <h3>Digital Art</h3>
-                    <p>Membuat Karakter Animasi dengan menggunakan aplikasi digital. Dimana menggunakan aplikasi Ibis Paint X</p>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-                <div class="services-box">
-                    <i class='bx bx-paint'></i>                
-                    <h3>Graphic Design</h3>
-                    <p>Melakukan desain berbagai platform media, seperti Banner, Postingan Medsos, dan Membuat Logo. Tools yang digunakan Inkscape & Photoshop </p>
-                    <a href="#" class="btn">Read More</a>
-                </div>
-        </div>
-    </section>
-
-    <!-- portfolio section design -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="heading">Latest <span>Project</span></h2>
-
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="images/portfolio.PNG" alt="">
-                <div class="portfolio-layer" style="color: white;">
-                    <h4>Portfolio </h4>
-                    <a href="#"><i class="bx bx-link-external" style="color: white;"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/portfolio-1.PNG" alt="">
-                <div class="portfolio-layer" style="color: white;">
-                    <h4>Daily Report - Laravel</h4>
-                    <a href="#"><i class="bx bx-link-external" style="color: white;"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/ac-comics.PNG" alt="">
-                <div class="portfolio-layer"  style="color:white;">
-                    <h4>Ac-Comics - Next Js</h4>
-
-                    <a href="https://ac-comics.vercel.app/"><i class="bx bx-link-external" style="color:white;"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/myart1.jpg" alt="">
-                <div class="portfolio-layer" style="color: white;">
-                    <h4>- Commision Art -</h4>                
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/myart2.jpg" alt="">
-                <div class="Digital Art" style="color: white;">
-                    <h4>- Commision Art -</h4>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/myart4.jpg" alt="">
-                <div class="portfolio-layer" style="color: white;" >
-                    <h4>- Commision Art -</h4>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-    <!-- contact section design -->
-    <section class="contact" id="contact">
-        <h2 class="heading">Kontak <span>Saya</span></h2>
-
-        <form action="#">
-            <div class="input-box">
-                <input type="text" placeholder="Nama Lengkap">
-                <input type="email" placeholder="Panggilan">
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Nomer HP">
-                <input type="email" placeholder="Alamat Email">
-            </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Pesan Anda"></textarea>
-            <input type="submit" value="Kirim" class="btn">
-        </form>
-    </section>
-
-
-    <!-- footer design -->
-    <footer class="footer">
-        <div class="footer-text" style="color: white;">
-            <p>Copyright &copy; 2023 by Fakhrizul Amri | Reserved All Right</p>
+        <!-- Image -->
+        <div class="order-1 lg:order-2 flex justify-center">
+          <div class="hero-ring animate-float">
+            <img src="images/home-1.jpg" alt="Fakhrizul Amri"
+                 class="w-64 h-64 lg:w-80 lg:h-80 object-cover rounded-full border-2 border-accent/30" />
+          </div>
         </div>
 
-        <div class="footer-iconTop">
-            <a href="#home"> <i class="bx bx-up-arrow-alt" ></i></a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hidden lg:flex items-center gap-3 mt-20 text-cream/25 text-xs section-tag">
+        <div class="w-12 h-px bg-cream/20"></div>
+        Scroll to explore
+      </div>
+    </div>
+  </section>
+
+  <div class="hr-accent mx-12"></div>
+
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="min-h-screen flex items-center py-24 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto w-full">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image -->
+        <div class="relative">
+          <div class="relative overflow-hidden rounded-sm">
+            <img src="images/about-1.jpg" alt="About Amri"
+                 class="w-full max-w-md mx-auto lg:mx-0 object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" />
+            <div class="absolute inset-0 bg-accent/10 mix-blend-overlay rounded-sm"></div>
+          </div>
+          <!-- Decorative element -->
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 border border-accent/20 rounded-sm -z-10 hidden lg:block"></div>
+          <div class="absolute -top-4 -left-4 w-20 h-20 border border-accent/10 rounded-sm -z-10 hidden lg:block"></div>
         </div>
-    </footer>
 
-    <!-- scroll reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+        <!-- Content -->
+        <div>
+          <div class="section-tag text-accent/60 mb-4">01 — About</div>
+          <h2 class="font-display text-4xl lg:text-5xl font-800 mb-6 leading-tight">
+            Tentang<br /><span class="text-accent">Saya</span>
+          </h2>
+          <div class="hr-accent w-16 mb-8"></div>
+          <p class="text-cream/60 leading-relaxed mb-6 text-sm lg:text-base">
+            Halo, perkenalkan nama saya <span class="text-cream font-500">Fakhrizul Amri</span>, juga biasa dipanggil Amri, adalah seorang developer web yang memiliki dedikasi tinggi di bidang Full Stack Web. Awal perjalanan dimulai dari dasar HTML, CSS, dan JavaScript.
+          </p>
+          <p class="text-cream/60 leading-relaxed mb-10 text-sm lg:text-base">
+            Kemudian menempuh jalur PHP dengan kerangka kerja <span class="text-accent">Laravel</span> dan <span class="text-accent">CodeIgniter</span>, serta React JS dan Next JS di bagian Front End. Amri memiliki kemampuan adaptasi yang cepat dalam tantangan baru.
+          </p>
 
-    <!-- typed js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-6">
+            <div class="text-center border border-white/5 p-4 rounded-sm hover:border-accent/30 transition-colors">
+              <div class="font-display text-3xl font-800 text-accent mb-1">3+</div>
+              <div class="text-cream/40 text-xs section-tag">Years Exp</div>
+            </div>
+            <div class="text-center border border-white/5 p-4 rounded-sm hover:border-accent/30 transition-colors">
+              <div class="font-display text-3xl font-800 text-accent mb-1">10+</div>
+              <div class="text-cream/40 text-xs section-tag">Projects</div>
+            </div>
+            <div class="text-center border border-white/5 p-4 rounded-sm hover:border-accent/30 transition-colors">
+              <div class="font-display text-3xl font-800 text-accent mb-1">3</div>
+              <div class="text-cream/40 text-xs section-tag">Services</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- custom js -->
-    <script src="js/script.js"></script>
-  </body>
+      </div>
+    </div>
+  </section>
+
+  <div class="hr-accent mx-12"></div>
+
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" class="py-24 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-16">
+        <div class="section-tag text-accent/60 mb-4">02 — Services</div>
+        <h2 class="font-display text-4xl lg:text-5xl font-800 leading-tight">
+          What I <span class="text-accent">Do</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="service-card bg-surface-2 p-8 rounded-sm group">
+          <div class="w-14 h-14 bg-accent/10 flex items-center justify-center rounded-sm mb-6 group-hover:bg-accent/20 transition-colors">
+            <i class="bx bx-code-alt text-3xl text-accent"></i>
+          </div>
+          <h3 class="font-display text-xl font-700 mb-3">Web Development</h3>
+          <p class="text-cream/50 text-sm leading-relaxed mb-6">
+            Mengembangkan aplikasi web modern dengan PHP, Laravel, CodeIgniter, React JS, dan Next JS. Membuat REST API yang robust dan scalable.
+          </p>
+          <a href="#contact" class="text-accent text-sm font-display font-600 hover:text-accent-light transition-colors">
+            Selengkapnya →
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card bg-surface-2 p-8 rounded-sm group">
+          <div class="w-14 h-14 bg-accent/10 flex items-center justify-center rounded-sm mb-6 group-hover:bg-accent/20 transition-colors">
+            <i class="bx bx-palette text-3xl text-accent"></i>
+          </div>
+          <h3 class="font-display text-xl font-700 mb-3">Digital Art</h3>
+          <p class="text-cream/50 text-sm leading-relaxed mb-6">
+            Membuat karakter animasi dan ilustrasi digital menggunakan aplikasi Ibis Paint X. Tersedia untuk commission art.
+          </p>
+          <a href="#portfolio" class="text-accent text-sm font-display font-600 hover:text-accent-light transition-colors">
+            Lihat Karya →
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card bg-surface-2 p-8 rounded-sm group">
+          <div class="w-14 h-14 bg-accent/10 flex items-center justify-center rounded-sm mb-6 group-hover:bg-accent/20 transition-colors">
+            <i class="bx bx-paint text-3xl text-accent"></i>
+          </div>
+          <h3 class="font-display text-xl font-700 mb-3">Graphic Design</h3>
+          <p class="text-cream/50 text-sm leading-relaxed mb-6">
+            Desain berbagai platform media: Banner, Postingan Sosmed, dan Logo. Menggunakan tools Inkscape & Photoshop.
+          </p>
+          <a href="#contact" class="text-accent text-sm font-display font-600 hover:text-accent-light transition-colors">
+            Selengkapnya →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Tech Stack Pills -->
+      <div class="mt-16 text-center">
+        <p class="section-tag text-cream/30 mb-6">Tech Stack</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">PHP</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">Laravel</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">CodeIgniter</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">React JS</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">Next JS</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">MySQL</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">JavaScript</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">Tailwind CSS</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">Inkscape</span>
+          <span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">Photoshop</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="hr-accent mx-12"></div>
+
+
+  <!-- ===================== PORTFOLIO ===================== -->
+  <section id="portfolio" class="py-24 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <div class="section-tag text-accent/60 mb-4">03 — Portfolio</div>
+          <h2 class="font-display text-4xl lg:text-5xl font-800 leading-tight">
+            Latest <span class="text-accent">Projects</span>
+          </h2>
+        </div>
+        <p class="text-cream/40 text-sm max-w-xs">Kumpulan project web development dan karya digital art terbaru.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex gap-4 mb-10">
+        <button onclick="filterPortfolio('all')" class="filter-btn active-filter px-5 py-2 text-xs font-display font-600 border border-accent text-accent rounded-sm transition-all">All</button>
+        <button onclick="filterPortfolio('web')" class="filter-btn px-5 py-2 text-xs font-display font-600 border border-white/10 text-cream/40 rounded-sm hover:border-accent/50 hover:text-cream/70 transition-all">Web Dev</button>
+        <button onclick="filterPortfolio('art')" class="filter-btn px-5 py-2 text-xs font-display font-600 border border-white/10 text-cream/40 rounded-sm hover:border-accent/50 hover:text-cream/70 transition-all">Digital Art</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="portfolio-grid">
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="web">
+          <img src="images/portfolio.PNG" alt="Portfolio" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Web Development</span>
+            <h4 class="font-display font-700 text-lg">Portfolio Website</h4>
+            <a href="#" class="mt-3 inline-flex items-center gap-1 text-accent text-xs hover:text-accent-light transition-colors">
+              View Project <i class="bx bx-link-external"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="web">
+          <img src="images/portfolio-1.PNG" alt="Daily Report" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Laravel</span>
+            <h4 class="font-display font-700 text-lg">Daily Report App</h4>
+            <a href="#" class="mt-3 inline-flex items-center gap-1 text-accent text-xs hover:text-accent-light transition-colors">
+              View Project <i class="bx bx-link-external"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="web">
+          <img src="images/ac-comics.PNG" alt="AC Comics" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Next.js</span>
+            <h4 class="font-display font-700 text-lg">Ac-Comics</h4>
+            <a href="https://ac-comics.vercel.app/" target="_blank" class="mt-3 inline-flex items-center gap-1 text-accent text-xs hover:text-accent-light transition-colors">
+              View Live <i class="bx bx-link-external"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="art">
+          <img src="images/myart1.jpg" alt="Commission Art" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Digital Art</span>
+            <h4 class="font-display font-700 text-lg">Commission Art</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="art">
+          <img src="images/myart2.jpg" alt="Commission Art 2" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Digital Art</span>
+            <h4 class="font-display font-700 text-lg">Commission Art</h4>
+          </div>
+        </div>
+
+        <div class="portfolio-item overflow-hidden rounded-sm relative cursor-pointer" data-cat="art">
+          <img src="images/myart4.jpg" alt="Commission Art 3" class="w-full h-56 object-cover" />
+          <div class="overlay absolute inset-0 flex flex-col justify-end p-5">
+            <span class="section-tag text-accent/80 mb-1">Digital Art</span>
+            <h4 class="font-display font-700 text-lg">Commission Art</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="hr-accent mx-12"></div>
+
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="py-24 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Info -->
+        <div>
+          <div class="section-tag text-accent/60 mb-4">04 — Contact</div>
+          <h2 class="font-display text-4xl lg:text-5xl font-800 leading-tight mb-6">
+            Mari <span class="text-accent">Berkolaborasi</span>
+          </h2>
+          <div class="hr-accent w-16 mb-8"></div>
+          <p class="text-cream/50 text-sm leading-relaxed mb-10 max-w-sm">
+            Punya project menarik? Atau sekadar ingin berdiskusi soal teknologi dan desain? Jangan ragu untuk menghubungi saya.
+          </p>
+
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-accent/10 flex items-center justify-center rounded-sm shrink-0">
+                <i class="bx bx-envelope text-accent"></i>
+              </div>
+              <div>
+                <p class="text-cream/30 text-xs section-tag mb-0.5">Email</p>
+                <p class="text-cream/80 text-sm">fakhrizulamri@email.com</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-accent/10 flex items-center justify-center rounded-sm shrink-0">
+                <i class="bx bx-map text-accent"></i>
+              </div>
+              <div>
+                <p class="text-cream/30 text-xs section-tag mb-0.5">Lokasi</p>
+                <p class="text-cream/80 text-sm">Indonesia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-surface-2 p-8 rounded-sm border border-white/5">
+          <form id="contact-form" class="flex flex-col gap-4">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-cream/40 text-xs section-tag mb-2 block">Nama Lengkap</label>
+                <input type="text" placeholder="John Doe"
+                       class="form-input w-full bg-surface px-4 py-3 text-cream text-sm rounded-sm border border-white/5 transition-all" />
+              </div>
+              <div>
+                <label class="text-cream/40 text-xs section-tag mb-2 block">Panggilan</label>
+                <input type="text" placeholder="John"
+                       class="form-input w-full bg-surface px-4 py-3 text-cream text-sm rounded-sm border border-white/5 transition-all" />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-cream/40 text-xs section-tag mb-2 block">No. HP</label>
+                <input type="text" placeholder="+62 8xx xxxx xxxx"
+                       class="form-input w-full bg-surface px-4 py-3 text-cream text-sm rounded-sm border border-white/5 transition-all" />
+              </div>
+              <div>
+                <label class="text-cream/40 text-xs section-tag mb-2 block">Alamat Email</label>
+                <input type="email" placeholder="email@example.com"
+                       class="form-input w-full bg-surface px-4 py-3 text-cream text-sm rounded-sm border border-white/5 transition-all" />
+              </div>
+            </div>
+            <div>
+              <label class="text-cream/40 text-xs section-tag mb-2 block">Pesan</label>
+              <textarea rows="5" placeholder="Ceritakan project kamu..."
+                        class="form-input w-full bg-surface px-4 py-3 text-cream text-sm rounded-sm border border-white/5 transition-all resize-none"></textarea>
+            </div>
+            <button type="submit"
+                    class="w-full py-3.5 bg-accent text-ink font-display font-700 text-sm hover:bg-accent-light transition-all duration-300 rounded-sm mt-2">
+              Kirim Pesan
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-white/5 py-8 px-6 lg:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-cream/30 text-xs">
+        © 2024 Fakhrizul Amri — All Rights Reserved
+      </p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-cream/30 hover:text-accent transition-colors text-sm"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="text-cream/30 hover:text-accent transition-colors text-sm"><i class="bx bxl-linkedin"></i></a>
+        <a href="#" class="text-cream/30 hover:text-accent transition-colors text-sm"><i class="bx bxl-github"></i></a>
+      </div>
+      <a href="#home" class="w-8 h-8 border border-white/10 flex items-center justify-center rounded-sm hover:border-accent hover:text-accent text-cream/30 transition-all">
+        <i class="bx bx-up-arrow-alt text-sm"></i>
+      </a>
+    </div>
+  </footer>
+
+
+  <script>
+    // ===== Typed.js =====
+    const typed = new Typed('#typed-text', {
+      strings: ['PHP Developer', 'Laravel Developer', 'Javascript Developer', 'Digital Artist'],
+      typeSpeed: 80,
+      backSpeed: 60,
+      backDelay: 1500,
+      loop: true,
+      showCursor: false,
+    });
+
+    // ===== Sticky Header =====
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        header.classList.add('bg-ink/95', 'backdrop-blur-md', 'border-b', 'border-white/5');
+        header.classList.remove('py-5');
+        header.querySelector('.max-w-7xl').classList.add('py-3');
+        header.querySelector('.max-w-7xl').classList.remove('py-5');
+      } else {
+        header.classList.remove('bg-ink/95', 'backdrop-blur-md', 'border-b', 'border-white/5');
+      }
+    });
+
+    // ===== Active Nav on Scroll =====
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.id;
+      });
+      navLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+      });
+    });
+
+    // ===== Mobile Menu =====
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    // ===== Portfolio Filter =====
+    function filterPortfolio(cat) {
+      const items = document.querySelectorAll('.portfolio-item');
+      const btns = document.querySelectorAll('.filter-btn');
+
+      btns.forEach(b => {
+        b.classList.remove('active-filter', 'border-accent', 'text-accent');
+        b.classList.add('border-white/10', 'text-cream/40');
+      });
+      event.target.classList.add('active-filter', 'border-accent', 'text-accent');
+      event.target.classList.remove('border-white/10', 'text-cream/40');
+
+      items.forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+          item.style.display = 'block';
+          item.style.animation = 'fadeIn 0.4s ease forwards';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // ===== Tech Stack Pills (rendered via JS) =====
+    const techs = ['PHP', 'Laravel', 'CodeIgniter', 'React JS', 'Next JS', 'MySQL', 'JavaScript', 'Tailwind CSS', 'Inkscape', 'Photoshop'];
+    const container = document.querySelector('.grid.md\\:grid-cols-3 + div .flex.flex-wrap');
+    if (container) {
+      container.innerHTML = techs.map(t =>
+        `<span class="px-4 py-1.5 border border-white/10 text-cream/50 text-xs rounded-sm hover:border-yellow-600/40 hover:text-yellow-600/80 transition-colors cursor-default">${t}</span>`
+      ).join('');
+    }
+
+    // ===== ScrollReveal =====
+    ScrollReveal({
+      reset: false,
+      distance: '30px',
+      duration: 900,
+      delay: 100,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    });
+    ScrollReveal().reveal('#home .order-2', { origin: 'left' });
+    ScrollReveal().reveal('#home .order-1', { origin: 'right' });
+    ScrollReveal().reveal('#about .relative', { origin: 'left' });
+    ScrollReveal().reveal('#about > div > div > div:last-child', { origin: 'right' });
+    ScrollReveal().reveal('.service-card', { origin: 'bottom', interval: 150 });
+    ScrollReveal().reveal('.portfolio-item', { origin: 'bottom', interval: 100 });
+    ScrollReveal().reveal('#contact > div > div > div', { origin: 'bottom', interval: 200 });
+  </script>
+</body>
 </html>
-
-
